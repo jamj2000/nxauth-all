@@ -1,0 +1,153 @@
+:root {
+  --header-height: 40px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  padding: 0 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  background-color: gainsboro;
+}
+
+
+h1 { 
+  font-size: 2.6rem;
+}
+
+h1, h2 {
+  margin-top: 50px;
+}
+
+a {
+  /* color: inherit;*/
+  text-decoration: none; 
+  margin-right: 16px;
+  font-weight: 700;
+
+}
+
+a:hover {
+  color:blue;
+  text-shadow: 0 0 1px rgb(0, 0, 0)
+}
+
+.info {
+  border-radius: 4px;
+  padding: 15px;
+  height: 3rem;
+  font-size: .8rem; 
+  margin-bottom: 10px;
+}
+
+.success::before {
+  content: '✅ '
+}
+
+.success { 
+  background-color: rgb(227, 250, 215);
+}
+
+
+.error::before {
+  content: '❌ ';
+}
+
+.error {
+  background-color: rgb(250, 224, 215);  
+}
+
+
+section.auth {
+  height: calc( 100vh - var(--header-height));
+  border: solid 1px darkgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+div.form {
+  height: calc( 100vh - var(--header-height) );
+  display: grid;
+  place-content: center;
+}
+
+div.form h1 {
+  text-align: center;
+}
+
+form.oauth, form.credentials {
+  width: 300px;
+  border: solid 1px lightgray;
+  background-color:rgb(245, 249, 255);
+  /* border-radius: 10px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+form.credentials div {
+  display: grid;
+  gap: 10px;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+}
+
+form button {
+  padding: 10px;
+  font-size: inherit;
+}
+
+nav button {
+  border: none;
+  font-size: inherit;
+  font-weight: 700;
+  background-color: transparent;
+}
+
+nav button:hover {
+    color:blue;
+    text-shadow: 0 0 1px rgb(0, 0, 0)
+}
+
+.social-button {
+  font-size: inherit;
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 5px;
+  border: solid 1px lightgray;
+  margin: 1px;
+}
+
+.social-button:hover {
+  background-color: white;
+  outline: solid 1px gray;
+}
+
+.social-button:active {
+  outline: solid 2px black;
+}
