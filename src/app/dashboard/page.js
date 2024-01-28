@@ -1,23 +1,20 @@
 import { auth } from "@/auth"
+import { redirect } from "next/navigation"
 
-async function Dashboard() {
-    const session = await auth()
+async function page() {
+    const sesion = await auth()
 
-    if (session)
-        return (
-            <>  <h1> 🔑 </h1>
-                <h1>Dashboard</h1 >
-                <p> {session?.user.name}</p>
-                <p> {session?.user.email} </p>
-                <p> {session?.user.role} </p>
-                <img src={session?.user.image}></img>
-            </>)
-    else
-        return <h1> No has iniciado sessión</h1>
+    if (!sesion) 
+        redirect('/auth/login')
 
-
-
-
+    return (
+        <>
+            <h1> 🔑  Dashboard</h1 >
+            <p> {sesion?.user.name}</p>
+            <p> {sesion?.user.email} </p>
+            <p> {sesion?.user.role} </p>
+            <img src={sesion?.user.image}></img>
+        </>)
 }
 
-export default Dashboard
+export default page

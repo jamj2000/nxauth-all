@@ -116,6 +116,15 @@ form input {
 form button {
   padding: 10px;
   font-size: inherit;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border: solid 1px lightgray;
+  margin: 1px;
+}
+
+form button:hover {
+  background-color: white;
+  outline: solid 1px gray;
 }
 
 nav button {

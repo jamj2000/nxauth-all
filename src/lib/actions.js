@@ -2,19 +2,17 @@
 import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
 import { signIn, signOut } from '@/auth';
+import { getUserByEmail } from '@/lib/data';
 
 
+// REGISTER
 export async function register(formData) {
     const name = formData.get('name')
     const email = formData.get('email')
     const password = formData.get('password')
 
     // Comprobamos si el usuario ya está registrado
-    const user = await prisma.user.findUnique({
-        where: {
-            email
-        }
-    })
+    const user = await getUserByEmail(email);
 
     if (user) {
         return { error: 'El email ya está registrado' }
@@ -36,17 +34,13 @@ export async function register(formData) {
 }
 
 
-
+// LOGIN credentials
 export async function login(formData) {
     const email = formData.get('email')
     const password = formData.get('password')
 
     // Comprobamos si el usuario está registrado
-    const user = await prisma.user.findUnique({
-        where: {
-            email
-        }
-    })
+    const user = await getUserByEmail(email);
 
     if (!user) {
         return { error: 'Usuario no registrado.' }
@@ -56,10 +50,7 @@ export async function login(formData) {
     const matchPassword = await bcrypt.compare(password, user.password)
 
     if (user && matchPassword) {  // && user.emailVerified
-        if (user.role === 'ADMIN')
-            await signIn('credentials', { email, password, redirectTo: '/admin' })
-        else 
-            await signIn('credentials', { email, password, redirectTo: '/dashboard' })
+        await signIn('credentials', { email, password, redirectTo: '/dashboard' })
         // return { success: "Inicio de sesión correcto" }
     } else {
         return { error: 'Credenciales incorrectas.' }
@@ -68,29 +59,31 @@ export async function login(formData) {
 }
 
 
-export async function logout() {
-    try {
-        await signOut({redirectTo: '/about'})
-    } catch (error) {
-        throw error
-    }
-}
-
-
+// LOGIN google
 export async function loginGoogle() {
     try {
-        await signIn('google', { redirectTo: '/dashboard'})
+        await signIn('google', { redirectTo: '/dashboard' })
     } catch (error) {
         throw error
     }
 }
 
+// LOGIN github
 export async function loginGithub() {
     try {
-        await signIn('github', { redirectTo: '/dashboard'})
+        await signIn('github', { redirectTo: '/dashboard' })
     } catch (error) {
         console.log(error);
         throw error
     }
 }
 
+
+// LOGOUT
+export async function logout() {
+    try {
+        await signOut({ redirectTo: '/' })
+    } catch (error) {
+        throw error
+    }
+}

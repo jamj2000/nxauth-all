@@ -1,8 +1,9 @@
 'use client'
 import { useState } from 'react';
 import { register } from '@/lib/actions'
-import Button from '@/components/button-form';
 import { redirect } from 'next/navigation';
+import Button from '@/components/button-form';
+
 
 function RegisterForm() {
     const [resultado, setResultado] = useState("")
@@ -13,7 +14,7 @@ function RegisterForm() {
         if (message.success) {
             setTipo('success')
             // setResultado(message.success);
-            redirect('/auth/signin')
+            redirect('/auth/login')
         } else {
             setTipo('error')
             setResultado(message.error);
@@ -21,31 +22,23 @@ function RegisterForm() {
 
     }
     return (
-        <>
-            <h1>Registro</h1>
-            <form action={wrapper} className='credentials'>
-                <div>
-                    <label>Nombre
-                        <input type='text' name='name'
-                            placeholder="John Doe"
-                        />
-                    </label>
-                    <label>Email
-                        <input type='email' name='email'
-                            placeholder="john.doe@example.com"
-                        />
-                    </label>
-                    <label>Password
-                        <input type="password" name='password'
-                            placeholder="******"
-                        />
-                    </label>
-                    <p className={`info ${tipo}`}> {resultado} </p>
-                </div>
+        <form action={wrapper} className='credentials'>
+            <div>
+                <label>Nombre
+                    <input type='text' name='name' placeholder="José García" />
+                </label>
+                <label>Email
+                    <input type='email' name='email' placeholder="jose@mail.com" />
+                </label>
+                <label>Contraseña
+                    <input type="password" name='password' placeholder="******" />
+                </label>
+                <p className={`info ${tipo}`}> {resultado} </p>
+            </div>
 
-                <Button title="Crear cuenta" />
-            </form>
-        </>
+            <Button title="Crear cuenta" />
+        </form>
+
     );
 };
 

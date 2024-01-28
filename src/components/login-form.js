@@ -20,27 +20,19 @@ function LoginForm() {
 
     }
     return (
-        <>
-            <h1>Iniciar sesión</h1>
-            <form action={wrapper} className='credentials'>
-                <div>
-                    <label>Email
-                        <input type='email' name='email'
-                            placeholder="john.doe@example.com"
-                        />
-                    </label>
-                    <label>Password
-                        <input type="password" name='password'
-                            placeholder="******"
-                        />
-                    </label>
-                    <p className={`info ${tipo}`}> {resultado} </p>
-                </div>
+        <form action={wrapper} className='credentials'>
+            <div>
+                <label>Email
+                    <input type='email' name='email' placeholder="jose@mail.com" />
+                </label>
+                <label>Contraseña
+                    <input type="password" name='password' placeholder="******" />
+                </label>
+                <p className={`info ${tipo}`}> {resultado} </p>
+            </div>
 
-                <Button title="Iniciar sesión" />
-            </form>
-        </>
-
+            <Button title="Iniciar sesión" />
+        </form>
     );
 };
 

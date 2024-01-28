@@ -9,8 +9,8 @@ export const options = {
     session: { strategy: 'jwt' },
     adapter: PrismaAdapter(prisma),
     pages: {
-        signIn: '/auth/signin',
-        signOut: '/auth/signout',
+        signIn: '/auth/login',
+        signOut: '/auth/logout',
         error: '/auth/error'
     },
     callbacks: {
@@ -19,7 +19,7 @@ export const options = {
             session.user.role = token?.role
             return session
         },
-        
+
         async jwt({ token }) {
             if (!token.sub) return token;
 
@@ -29,7 +29,7 @@ export const options = {
             token.role = user?.role
             return token
         }
-    }
+    },
 }
 
 
@@ -39,8 +39,4 @@ export const {
     auth,
     signIn,
     signOut
-} = NextAuth({ ...options, ...authConfig})
-
-
-
-
+} = NextAuth({ ...options, ...authConfig })

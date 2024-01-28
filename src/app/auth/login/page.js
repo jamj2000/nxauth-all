@@ -20,11 +20,12 @@ function page({ searchParams }) {
 
   return (
     <>
+      {error && <h3>{errors.get(error)}</h3>}
       <div className="form">
+        <h1>Iniciar sesión</h1>
         <LoginForm />
         <OAuthForm error={error} />
       </div>
-      {error && <h3>{errors.get(error)}</h3>}
     </>
   )
 }

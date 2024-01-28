@@ -21,8 +21,8 @@ async function Header() {
                     ? <form><button formAction={logout}>SignOut</button></form>
                     :
                     (<>
-                        <Link href="/auth/signup">SignUp</Link>
-                        <Link href="/auth/signin">SignIn</Link>
+                        <Link href="/auth/register">SignUp</Link>
+                        <Link href="/auth/login">SignIn</Link>
                     </>)
                 }
             </nav>
